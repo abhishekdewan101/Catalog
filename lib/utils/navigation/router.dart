@@ -9,9 +9,20 @@ class AppRouter {
     initialLocation: "/",
     routes: [
       GoRoute(
-          path: "/",
-          name: Routes.splash,
-          builder: (context, state) => SplashScreen())
+        path: "/",
+        name: Routes.splash,
+        builder: (context, state) => SplashScreen(),
+      ),
+      GoRoute(
+        path: "/signup",
+        name: Routes.signUp,
+        builder: (context, state) => SignUpScreen(),
+      ),
+      GoRoute(
+        path: "/signin",
+        name: Routes.signIn,
+        builder: (context, state) => SignInScreen(),
+      ),
     ],
   );
 }
