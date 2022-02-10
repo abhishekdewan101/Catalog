@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mind_palace/utils/firebase/firebase.dart';
 import 'package:mind_palace/utils/navigation/router.dart';
 import 'package:mind_palace/utils/theme/mind_palace_theme.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  initializeFirebase();
   runApp(const MyApp());
 }
 
