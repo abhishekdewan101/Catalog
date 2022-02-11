@@ -10,8 +10,13 @@ class AppRouter {
     routes: [
       GoRoute(
         path: "/",
-        name: Routes.splash,
-        builder: (context, state) => SplashScreen(),
+        name: Routes.base,
+        builder: (context, state) => const BaseScreen(),
+      ),
+      GoRoute(
+        path: "/landing",
+        name: Routes.landing,
+        builder: (context, state) => LandingScreen(),
       ),
       GoRoute(
         path: "/signup",
