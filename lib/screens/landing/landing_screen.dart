@@ -1,42 +1,97 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mind_palace/utils/navigation/routes.dart';
 
 class LandingScreen extends ConsumerWidget {
   const LandingScreen({Key? key}) : super(key: key);
 
+  Widget _buildAppLogo(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
+    return Column(
+      children: [
+        Text("Catalog",
+            style: theme.textTheme.displaySmall
+                ?.copyWith(fontWeight: FontWeight.bold)),
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: Icon(
+            Icons.style_outlined,
+            size: 64,
+            color: theme.textTheme.displaySmall?.color,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildButton(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
+    return Column(
+      children: [
+        Material(
+          borderRadius: BorderRadius.circular(15),
+          child: InkWell(
+            onTap: () {
+              context.goNamed(Routes.signUp);
+            },
+            borderRadius: BorderRadius.circular(20),
+            child: Container(
+              width: 250,
+              height: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              alignment: Alignment.center,
+              child: const Text('Sign Up'),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Material(
+          color: theme.colorScheme.primary,
+          borderRadius: BorderRadius.circular(15),
+          child: InkWell(
+            onTap: () {
+              context.goNamed(Routes.signIn);
+            },
+            borderRadius: BorderRadius.circular(20),
+            child: Container(
+              width: 250,
+              height: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              alignment: Alignment.center,
+              child: const Text('Sign In'),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 75.0),
-              child: Text(
-                "Mind",
-                style: Theme.of(context)
-                    .textTheme
-                    .displaySmall
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-            Icon(
-              Icons.psychology_outlined,
-              size: 48,
-              color: Theme.of(context).textTheme.displaySmall?.color,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 75.0),
-              child: Text(
-                "Palace",
-                style: Theme.of(context)
-                    .textTheme
-                    .displaySmall
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(),
+              _buildAppLogo(context),
+              const Spacer(),
+              Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: _buildButton(context)),
+            ],
+          ),
         ),
       ),
     );
