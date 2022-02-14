@@ -14,9 +14,9 @@ class AppRouter {
         builder: (context, state) => const BaseScreen(),
       ),
       GoRoute(
-        path: "/landing",
+        path: "/welcome",
         name: Routes.landing,
-        builder: (context, state) => const LandingScreen(),
+        builder: (context, state) => const WelcomeScreen(),
       ),
       GoRoute(
         path: "/signup",

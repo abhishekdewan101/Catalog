@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mind_palace/utils/navigation/routes.dart';
 
-class LandingScreen extends ConsumerWidget {
-  const LandingScreen({Key? key}) : super(key: key);
+class WelcomeScreen extends ConsumerWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   Widget _buildAppLogo(BuildContext context) {
     ThemeData theme = Theme.of(context);
@@ -29,6 +30,7 @@ class LandingScreen extends ConsumerWidget {
 
   Widget _buildButton(BuildContext context) {
     ThemeData theme = Theme.of(context);
+    var screenSize = MediaQuery.of(context).size;
 
     return Column(
       children: [
@@ -40,7 +42,7 @@ class LandingScreen extends ConsumerWidget {
             },
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              width: 250,
+              width: screenSize.width,
               height: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -67,7 +69,7 @@ class LandingScreen extends ConsumerWidget {
             },
             borderRadius: BorderRadius.circular(20),
             child: Container(
-              width: 250,
+              width: screenSize.width,
               height: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -88,19 +90,28 @@ class LandingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var brightness = MediaQuery.of(context).platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
+
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Spacer(),
               _buildAppLogo(context),
-              const Spacer(),
               Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: _buildButton(context)),
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: _buildButton(context),
+              ),
+              SvgPicture.asset(
+                isDarkMode
+                    ? 'assets/welcome_illus.svg'
+                    : 'assets/welcome_illus_light.svg',
+                width: 386,
+                height: 328,
+              )
             ],
           ),
         ),

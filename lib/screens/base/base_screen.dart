@@ -15,7 +15,7 @@ class BaseScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     User? user = ref.read(authenticationRepositoryProvider).getCurrentUser();
     if (user == null) {
-      return const LandingScreen();
+      return const WelcomeScreen();
     } else {
       return const HomeScreen();
     }
