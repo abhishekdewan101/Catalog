@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mind_palace/screens/landing/landing_screen.dart';
 import 'package:mind_palace/screens/screens.dart';
 import 'package:mind_palace/utils/navigation/routes.dart';
 
@@ -10,12 +11,12 @@ class AppRouter {
     routes: [
       GoRoute(
         path: "/",
-        name: Routes.base,
-        builder: (context, state) => const BaseScreen(),
+        name: Routes.landing,
+        builder: (context, state) => const LandingScreen(),
       ),
       GoRoute(
         path: "/welcome",
-        name: Routes.landing,
+        name: Routes.welcome,
         builder: (context, state) => const WelcomeScreen(),
       ),
       GoRoute(
@@ -28,6 +29,11 @@ class AppRouter {
         name: Routes.signIn,
         builder: (context, state) => const SignInScreen(),
       ),
+      GoRoute(
+        path: "/base",
+        name: Routes.base,
+        builder: (context, state) => const BaseScreen(),
+      )
     ],
   );
 }

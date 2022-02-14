@@ -7,27 +7,6 @@ import 'package:mind_palace/utils/navigation/routes.dart';
 class WelcomeScreen extends ConsumerWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
-  Widget _buildAppLogo(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-
-    return Column(
-      children: [
-        Text("Catalog",
-            style: theme.textTheme.displaySmall?.copyWith(
-                color: theme.colorScheme.onBackground,
-                fontWeight: FontWeight.bold)),
-        Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: Icon(
-            Icons.style_outlined,
-            size: 64,
-            color: theme.colorScheme.onBackground,
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildButton(BuildContext context) {
     ThemeData theme = Theme.of(context);
     var screenSize = MediaQuery.of(context).size;
@@ -100,7 +79,6 @@ class WelcomeScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _buildAppLogo(context),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
                 child: _buildButton(context),

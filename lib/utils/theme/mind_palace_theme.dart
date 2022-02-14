@@ -88,4 +88,7 @@ class MindPalaceTheme {
     headline6: GoogleFonts.montserrat(fontWeight: _bold, fontSize: 16.0),
     button: GoogleFonts.montserrat(fontWeight: _semiBold, fontSize: 14.0),
   );
+
+  static final TextTheme logoTextTheme =
+      TextTheme(headline4: GoogleFonts.parisienne());
 }
