@@ -16,17 +16,17 @@ class AppRouter {
       GoRoute(
         path: "/landing",
         name: Routes.landing,
-        builder: (context, state) => LandingScreen(),
+        builder: (context, state) => const LandingScreen(),
       ),
       GoRoute(
         path: "/signup",
         name: Routes.signUp,
-        builder: (context, state) => SignUpScreen(),
+        builder: (context, state) => const SignUpScreen(),
       ),
       GoRoute(
         path: "/signin",
         name: Routes.signIn,
-        builder: (context, state) => SignInScreen(),
+        builder: (context, state) => const SignInScreen(),
       ),
     ],
   );

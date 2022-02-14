@@ -4,8 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mind_palace/providers/authentication_providers.dart';
 import 'package:mind_palace/screens/screens.dart';
 
-import '../home/home_screen.dart';
-
 /*
  * This class doesn't show any screen. It's here to allow us to navigate to the right page
  * based on if the user is logged in vs not.

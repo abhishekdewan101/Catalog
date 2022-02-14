@@ -12,14 +12,15 @@ class LandingScreen extends ConsumerWidget {
     return Column(
       children: [
         Text("Catalog",
-            style: theme.textTheme.displaySmall
-                ?.copyWith(fontWeight: FontWeight.bold)),
+            style: theme.textTheme.displaySmall?.copyWith(
+                color: theme.colorScheme.onBackground,
+                fontWeight: FontWeight.bold)),
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: Icon(
             Icons.style_outlined,
             size: 64,
-            color: theme.textTheme.displaySmall?.color,
+            color: theme.colorScheme.onBackground,
           ),
         ),
       ],
@@ -45,7 +46,12 @@ class LandingScreen extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               alignment: Alignment.center,
-              child: const Text('Sign Up'),
+              child: Text(
+                'Sign Up',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: theme.colorScheme.onBackground),
+              ),
             ),
           ),
         ),
@@ -57,7 +63,7 @@ class LandingScreen extends ConsumerWidget {
           borderRadius: BorderRadius.circular(15),
           child: InkWell(
             onTap: () {
-              context.goNamed(Routes.signIn);
+              context.goNamed(Routes.signUp);
             },
             borderRadius: BorderRadius.circular(20),
             child: Container(
@@ -67,7 +73,12 @@ class LandingScreen extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               alignment: Alignment.center,
-              child: const Text('Sign In'),
+              child: Text(
+                'Sign In',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ),
