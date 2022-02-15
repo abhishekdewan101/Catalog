@@ -11,58 +11,53 @@ class WelcomeScreen extends ConsumerWidget {
     ThemeData theme = Theme.of(context);
     var screenSize = MediaQuery.of(context).size;
 
+    return Column(children: [
+      OutlinedButton(
+        onPressed: () {
+          context.pushNamed(Routes.signIn);
+        },
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(color: theme.colorScheme.primary),
+          minimumSize: Size(screenSize.width, 60),
+        ),
+        child: const Text(
+          'Sign In',
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: ElevatedButton(
+          onPressed: () {
+            context.pushNamed(Routes.signUp);
+          },
+          style: ElevatedButton.styleFrom(
+            minimumSize: Size(screenSize.width, 60),
+          ),
+          child: const Text('Sign Up'),
+        ),
+      )
+    ]);
+  }
+
+  Widget _buildWelcomeMessage(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Material(
-          borderRadius: BorderRadius.circular(15),
-          child: InkWell(
-            onTap: () {
-              context.goNamed(Routes.signUp);
-            },
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              width: screenSize.width,
-              height: 60,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                'Sign Up',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.onBackground),
-              ),
-            ),
+        Text(
+          "Welcome !",
+          style: theme.textTheme.displaySmall?.copyWith(
+              color: theme.colorScheme.onBackground,
+              fontWeight: FontWeight.bold),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Text(
+            "Catalog the different parts of your life and manage them from anywhere",
+            style:
+                TextStyle(color: theme.colorScheme.onBackground.withAlpha(122)),
           ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Material(
-          color: theme.colorScheme.primary,
-          borderRadius: BorderRadius.circular(15),
-          child: InkWell(
-            onTap: () {
-              context.goNamed(Routes.signUp);
-            },
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              width: screenSize.width,
-              height: 60,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                'Sign In',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ),
+        )
       ],
     );
   }
@@ -70,28 +65,26 @@ class WelcomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var brightness = MediaQuery.of(context).platformBrightness;
+    ThemeData theme = Theme.of(context);
     bool isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: _buildButton(context),
-              ),
-              SvgPicture.asset(
-                isDarkMode
-                    ? 'assets/welcome_illus.svg'
-                    : 'assets/welcome_illus_light.svg',
-                width: 386,
-                height: 328,
-              )
-            ],
-          ),
+        minimum: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _buildWelcomeMessage(context),
+            _buildButton(context),
+            SvgPicture.asset(
+              isDarkMode
+                  ? 'assets/welcome_illus.svg'
+                  : 'assets/welcome_illus_light.svg',
+              width: 386,
+              height: 328,
+            )
+          ],
         ),
       ),
     );
