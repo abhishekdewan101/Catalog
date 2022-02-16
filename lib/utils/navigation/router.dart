@@ -33,6 +33,11 @@ class AppRouter {
         path: "/base",
         name: Routes.base,
         builder: (context, state) => const BaseScreen(),
+      ),
+      GoRoute(
+        path: "/home",
+        name: Routes.home,
+        builder: (context, state) => const HomeScreen(),
       )
     ],
   );

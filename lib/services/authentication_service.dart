@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthenticationService {
   User? getCurrentUser();
+  Future<UserCredential> tryCreateUserWithEmailAndPassword(
+      String email, String password);
 }
 
 class FirebaseAuthenticationService implements AuthenticationService {
@@ -12,5 +14,12 @@ class FirebaseAuthenticationService implements AuthenticationService {
   @override
   User? getCurrentUser() {
     return instance.currentUser;
+  }
+
+  @override
+  Future<UserCredential> tryCreateUserWithEmailAndPassword(
+      String email, String password) {
+    return instance.createUserWithEmailAndPassword(
+        email: email, password: password);
   }
 }
