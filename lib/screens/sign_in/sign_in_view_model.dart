@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:mind_palace/repositories/authentication_repository.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:mind_palace/utils/extensions/string_extensions.dart';
@@ -12,6 +10,7 @@ abstract class SignInViewModel {
 enum SignInViewState {
   INITIAL,
   SIGNING_IN,
+  SIGN_IN_ERROR,
   EMAIL_ERROR,
   PASSWORD_ERROR,
   SIGN_IN_SUCCESS
@@ -35,16 +34,10 @@ class SignInViewModelImpl implements SignInViewModel {
     if (!_isValidPassword(password)) return;
     _viewState.value = SignInViewState.SIGNING_IN;
     repository
-        .tryCreateUserWithEmailAndPassword(email!, password!)
+        .trySignInUserWithEmailAndPassword(email!, password!)
         .then((value) => {_viewState.value = SignInViewState.SIGN_IN_SUCCESS})
-        .catchError(
-          (error, stackTrace) => {
-            if (error.toString().contains('password'))
-              _viewState.value = SignInViewState.PASSWORD_ERROR
-            else
-              _viewState.value = SignInViewState.EMAIL_ERROR
-          },
-        );
+        .catchError((error, stackTrace) =>
+            {_viewState.value = SignInViewState.SIGN_IN_ERROR});
   }
 
   bool _isValidPassword(String? password) {

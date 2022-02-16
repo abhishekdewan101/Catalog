@@ -33,7 +33,6 @@ class MindPalaceTheme {
           _lightFillColor.withOpacity(0.80),
           _darkFillColor,
         ),
-        contentTextStyle: _textTheme.subtitle1!.apply(color: _darkFillColor),
       ),
     );
   }
@@ -68,24 +67,6 @@ class MindPalaceTheme {
     onSecondary: Color(0xFFFFFFFF),
     onSurface: Color(0xFF1D1B1F),
     brightness: Brightness.dark,
-  );
-
-  static const _regular = FontWeight.w400;
-  static const _medium = FontWeight.w500;
-  static const _semiBold = FontWeight.w600;
-  static const _bold = FontWeight.w700;
-
-  static final TextTheme _textTheme = TextTheme(
-    headline4: GoogleFonts.montserrat(fontWeight: _bold, fontSize: 20.0),
-    caption: GoogleFonts.oswald(fontWeight: _semiBold, fontSize: 16.0),
-    headline5: GoogleFonts.oswald(fontWeight: _medium, fontSize: 16.0),
-    subtitle1: GoogleFonts.montserrat(fontWeight: _medium, fontSize: 16.0),
-    overline: GoogleFonts.montserrat(fontWeight: _medium, fontSize: 12.0),
-    bodyText1: GoogleFonts.montserrat(fontWeight: _regular, fontSize: 14.0),
-    subtitle2: GoogleFonts.montserrat(fontWeight: _medium, fontSize: 14.0),
-    bodyText2: GoogleFonts.montserrat(fontWeight: _regular, fontSize: 16.0),
-    headline6: GoogleFonts.montserrat(fontWeight: _bold, fontSize: 16.0),
-    button: GoogleFonts.montserrat(fontWeight: _semiBold, fontSize: 14.0),
   );
 
   static final TextTheme logoTextTheme =

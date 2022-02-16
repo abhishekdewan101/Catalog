@@ -22,7 +22,7 @@ class AppRouter {
       GoRoute(
         path: "/signup",
         name: Routes.signUp,
-        builder: (context, state) => const SignUpScreen(),
+        builder: (context, state) => SignUpScreen(),
       ),
       GoRoute(
         path: "/signin",

@@ -31,6 +31,20 @@ class SignInScreen extends ConsumerWidget {
             Future.microtask(() => context.goNamed(Routes.home));
           }
 
+          if (snapshot.data == SignInViewState.SIGN_IN_ERROR) {
+            Future.microtask(
+              () => {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      "Could not sign in. Please check your credentials",
+                    ),
+                  ),
+                )
+              },
+            );
+          }
+
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +54,7 @@ class SignInScreen extends ConsumerWidget {
                   quarterTurns: 2,
                   child: SizedBox(
                     width: screenSize.width,
-                    height: 300,
+                    height: screenSize.height / 4,
                     child: SvgPicture.asset(
                       'assets/landing_page_light.svg',
                       fit: BoxFit.cover,
@@ -202,7 +216,7 @@ class SignInScreen extends ConsumerWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              context.pushNamed(Routes.signUp);
+                              context.goNamed(Routes.signUp);
                             },
                         )
                       ],

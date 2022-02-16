@@ -4,6 +4,8 @@ abstract class AuthenticationService {
   User? getCurrentUser();
   Future<UserCredential> tryCreateUserWithEmailAndPassword(
       String email, String password);
+  Future<UserCredential?> trySignInUserWithEmailAndPassword(
+      String email, String password);
 }
 
 class FirebaseAuthenticationService implements AuthenticationService {
@@ -20,6 +22,13 @@ class FirebaseAuthenticationService implements AuthenticationService {
   Future<UserCredential> tryCreateUserWithEmailAndPassword(
       String email, String password) {
     return instance.createUserWithEmailAndPassword(
+        email: email, password: password);
+  }
+
+  @override
+  Future<UserCredential?> trySignInUserWithEmailAndPassword(
+      String email, String password) {
+    return instance.signInWithEmailAndPassword(
         email: email, password: password);
   }
 }
