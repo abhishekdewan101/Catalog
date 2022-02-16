@@ -22,7 +22,7 @@ dependencies:
 
 flutter_icons:
   image_path: "assets/logo.png"
-  android: false
+  android: "launcher_icon"
   ios: true
   # optionally, as transparency is not allowed on app store
   # remove_alpha_ios: true
