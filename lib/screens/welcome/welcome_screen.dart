@@ -65,7 +65,6 @@ class WelcomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var brightness = MediaQuery.of(context).platformBrightness;
-    ThemeData theme = Theme.of(context);
     bool isDarkMode = brightness == Brightness.dark;
 
     return Scaffold(
