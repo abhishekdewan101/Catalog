@@ -1,0 +1,17 @@
+name: Flutter Analyze And Test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build_apk:
+    name: Analyze Code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Analyze
+        run: flutter analyze
+      - name: Testing
+        run: flutter test --coverage
