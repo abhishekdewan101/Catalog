@@ -7,14 +7,7 @@ abstract class SignInViewModel {
   void tryCreateUserWithEmailAndPassword(String? email, String? password);
 }
 
-enum SignInViewState {
-  INITIAL,
-  SIGNING_IN,
-  SIGN_IN_ERROR,
-  EMAIL_ERROR,
-  PASSWORD_ERROR,
-  SIGN_IN_SUCCESS
-}
+enum SignInViewState { INITIAL, SIGNING_IN, SIGN_IN_ERROR, SIGN_IN_SUCCESS }
 
 class SignInViewModelImpl implements SignInViewModel {
   late AuthenticationRepository repository;
@@ -42,7 +35,7 @@ class SignInViewModelImpl implements SignInViewModel {
 
   bool _isValidPassword(String? password) {
     if (password == null || password.isEmpty) {
-      _viewState.value = SignInViewState.PASSWORD_ERROR;
+      _viewState.value = SignInViewState.SIGN_IN_ERROR;
       return false;
     }
     return true;
@@ -50,7 +43,7 @@ class SignInViewModelImpl implements SignInViewModel {
 
   bool _isValidEmail(String? email) {
     if (email == null || email.isEmpty || !email.isValidEmail()) {
-      _viewState.value = SignInViewState.EMAIL_ERROR;
+      _viewState.value = SignInViewState.SIGN_IN_ERROR;
       return false;
     }
     return true;

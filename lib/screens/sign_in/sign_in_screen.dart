@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mind_palace/providers/view_model_providers.dart';
 import 'package:mind_palace/screens/sign_in/sign_in_view_model.dart';
 import 'package:mind_palace/utils/navigation/routes.dart';
+import 'package:mind_palace/widgets/text_field_with_error.dart';
 
 class SignInScreen extends ConsumerWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -35,10 +36,11 @@ class SignInScreen extends ConsumerWidget {
             Future.microtask(
               () => {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
+                  SnackBar(
+                    duration: const Duration(seconds: 2),
                     content: Text(
-                      "Could not sign in. Please check your credentials",
-                    ),
+                        "Could not sign in. Please check your credentials",
+                        style: TextStyle(color: theme.colorScheme.onSurface)),
                   ),
                 )
               },
@@ -70,77 +72,33 @@ class SignInScreen extends ConsumerWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 40.0, right: 20.0, left: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextField(
-                        controller: emailTextFieldController,
-                        style: TextStyle(color: theme.colorScheme.onBackground),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor:
-                              theme.colorScheme.onBackground.withAlpha(20),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: "Enter Email",
-                          hintStyle: TextStyle(
-                            color: theme.colorScheme.onBackground.withAlpha(75),
-                          ),
-                        ),
-                      ),
-                      (snapshot.hasData &&
-                              snapshot.data == SignInViewState.EMAIL_ERROR)
-                          ? Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                "Error in email",
-                                style:
-                                    TextStyle(color: theme.colorScheme.error),
-                              ),
-                            )
-                          : Container()
-                    ],
+                  child: TextFieldWithError(
+                    textEditingController: emailTextFieldController,
+                    errorText: "Check you credentials",
+                    textStyle: TextStyle(color: theme.colorScheme.onBackground),
+                    errorStyle: TextStyle(color: theme.colorScheme.error),
+                    showError: (snapshot.hasData &&
+                        snapshot.data == SignInViewState.SIGN_IN_ERROR),
+                    hintText: "Enter Email",
+                    hintStyle: TextStyle(
+                      color: theme.colorScheme.onBackground.withAlpha(75),
+                    ),
                   ),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 15.0, right: 20.0, left: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextField(
-                        controller: passwordTextFieldController,
-                        obscureText: true,
-                        obscuringCharacter: "*",
-                        style: TextStyle(color: theme.colorScheme.onBackground),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor:
-                              theme.colorScheme.onBackground.withAlpha(20),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: "Enter Password",
-                          hintStyle: TextStyle(
-                            color: theme.colorScheme.onBackground.withAlpha(75),
-                          ),
-                        ),
-                      ),
-                      (snapshot.hasData &&
-                              snapshot.data == SignInViewState.PASSWORD_ERROR)
-                          ? Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                "Error in password",
-                                style:
-                                    TextStyle(color: theme.colorScheme.error),
-                              ),
-                            )
-                          : Container()
-                    ],
+                  child: TextFieldWithError(
+                    textEditingController: emailTextFieldController,
+                    errorText: "Check you credentials",
+                    textStyle: TextStyle(color: theme.colorScheme.onBackground),
+                    errorStyle: TextStyle(color: theme.colorScheme.error),
+                    showError: (snapshot.hasData &&
+                        snapshot.data == SignInViewState.SIGN_IN_ERROR),
+                    hintText: "Enter Email",
+                    hintStyle: TextStyle(
+                      color: theme.colorScheme.onBackground.withAlpha(75),
+                    ),
                   ),
                 ),
                 (snapshot.hasData &&
