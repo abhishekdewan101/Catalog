@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TextFieldWithError extends StatelessWidget {
-  late TextEditingController textEditingController;
-  late TextStyle textStyle;
-  late String errorText;
-  late TextStyle errorStyle;
-  late TextStyle hintStyle;
-  late String hintText;
-  late bool showError;
-  late bool obsurceText;
+  final TextEditingController textEditingController;
+  final TextStyle textStyle;
+  final String errorText;
+  final TextStyle errorStyle;
+  final TextStyle hintStyle;
+  final String hintText;
+  final bool showError;
+  final bool obsurceText;
 
-  TextFieldWithError({
+  const TextFieldWithError({
     Key? key,
     required this.textEditingController,
     required this.errorText,
