@@ -83,22 +83,24 @@ class SignInScreen extends ConsumerWidget {
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onBackground.withAlpha(75),
                     ),
+                    obsurceText: false,
                   ),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 15.0, right: 20.0, left: 20.0),
                   child: TextFieldWithError(
-                    textEditingController: emailTextFieldController,
+                    textEditingController: passwordTextFieldController,
                     errorText: "Check you credentials",
                     textStyle: TextStyle(color: theme.colorScheme.onBackground),
                     errorStyle: TextStyle(color: theme.colorScheme.error),
                     showError: (snapshot.hasData &&
                         snapshot.data == SignInViewState.SIGN_IN_ERROR),
-                    hintText: "Enter Email",
+                    hintText: "Enter Password",
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onBackground.withAlpha(75),
                     ),
+                    obsurceText: true,
                   ),
                 ),
                 (snapshot.hasData &&

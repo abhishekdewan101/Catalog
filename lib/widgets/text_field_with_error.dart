@@ -8,6 +8,7 @@ class TextFieldWithError extends StatelessWidget {
   late TextStyle hintStyle;
   late String hintText;
   late bool showError;
+  late bool obsurceText;
 
   TextFieldWithError({
     Key? key,
@@ -18,6 +19,7 @@ class TextFieldWithError extends StatelessWidget {
     required this.showError,
     required this.hintText,
     required this.hintStyle,
+    required this.obsurceText,
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class TextFieldWithError extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
+          obscureText: obsurceText,
           controller: textEditingController,
           style: textStyle,
           decoration: InputDecoration(

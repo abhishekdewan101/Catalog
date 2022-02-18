@@ -40,6 +40,7 @@ class SignUpViewModelImpl implements SignUpViewModel {
             (value) => {_viewState.value = SignUpViewState.SIGN_UP_SUCCESSFUL})
         .catchError(
           (error, stackTrace) => {
+            //TODO: Perhaps better handling of different errors to provide better error message.
             if (error.toString().contains('password'))
               _viewState.value = SignUpViewState.PASSWORD_ERROR
             else

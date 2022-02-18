@@ -9,6 +9,7 @@ import 'package:mind_palace/providers/view_model_providers.dart';
 import 'package:mind_palace/screens/sign_up/sign_up_view_model.dart';
 
 import '../../utils/navigation/routes.dart';
+import '../../widgets/text_field_with_error.dart';
 
 class SignUpScreen extends ConsumerWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -58,117 +59,54 @@ class SignUpScreen extends ConsumerWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 40.0, right: 20.0, left: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextField(
-                        controller: emailTextFieldController,
-                        style: TextStyle(color: theme.colorScheme.onBackground),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor:
-                              theme.colorScheme.onBackground.withAlpha(20),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: "Enter Email",
-                          hintStyle: TextStyle(
-                            color: theme.colorScheme.onBackground.withAlpha(75),
-                          ),
-                        ),
-                      ),
-                      (snapshot.hasData &&
-                              snapshot.data == SignUpViewState.EMAIL_ERROR)
-                          ? Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                "Error in email",
-                                style:
-                                    TextStyle(color: theme.colorScheme.error),
-                              ),
-                            )
-                          : Container()
-                    ],
+                  child: TextFieldWithError(
+                    textEditingController: emailTextFieldController,
+                    errorText: "Email has an error",
+                    textStyle: TextStyle(color: theme.colorScheme.onBackground),
+                    errorStyle: TextStyle(color: theme.colorScheme.error),
+                    showError: (snapshot.hasData &&
+                        snapshot.data == SignUpViewState.EMAIL_ERROR),
+                    hintText: "Enter Email",
+                    hintStyle: TextStyle(
+                      color: theme.colorScheme.onBackground.withAlpha(75),
+                    ),
+                    obsurceText: false,
                   ),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 15.0, right: 20.0, left: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextField(
-                        controller: passwordTextFieldController,
-                        obscureText: true,
-                        obscuringCharacter: "*",
-                        style: TextStyle(color: theme.colorScheme.onBackground),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor:
-                              theme.colorScheme.onBackground.withAlpha(20),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: "Enter Password",
-                          hintStyle: TextStyle(
-                            color: theme.colorScheme.onBackground.withAlpha(75),
-                          ),
-                        ),
-                      ),
-                      (snapshot.hasData &&
-                              snapshot.data == SignUpViewState.PASSWORD_ERROR)
-                          ? Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                "Error in password",
-                                style:
-                                    TextStyle(color: theme.colorScheme.error),
-                              ),
-                            )
-                          : Container()
-                    ],
+                  child: TextFieldWithError(
+                    textEditingController: passwordTextFieldController,
+                    errorText: "Password has an error",
+                    textStyle: TextStyle(color: theme.colorScheme.onBackground),
+                    errorStyle: TextStyle(color: theme.colorScheme.error),
+                    showError: (snapshot.hasData &&
+                        snapshot.data == SignUpViewState.PASSWORD_ERROR),
+                    hintText: "Enter Password",
+                    hintStyle: TextStyle(
+                      color: theme.colorScheme.onBackground.withAlpha(75),
+                    ),
+                    obsurceText: true,
                   ),
                 ),
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 15.0, right: 20.0, left: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextField(
-                        controller: passwordConfirmationTextFieldController,
-                        obscureText: true,
-                        obscuringCharacter: "*",
-                        style: TextStyle(color: theme.colorScheme.onBackground),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor:
-                              theme.colorScheme.onBackground.withAlpha(20),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: "Confirm Password",
-                          hintStyle: TextStyle(
-                            color: theme.colorScheme.onBackground.withAlpha(75),
-                          ),
-                        ),
-                      ),
-                      (snapshot.hasData &&
-                              snapshot.data ==
-                                  SignUpViewState.PASSWORD_DOESNT_MATCH_ERROR)
-                          ? Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Text(
-                                "Passwords do not match",
-                                style:
-                                    TextStyle(color: theme.colorScheme.error),
-                              ),
-                            )
-                          : Container()
-                    ],
+                  child: TextFieldWithError(
+                    textEditingController:
+                        passwordConfirmationTextFieldController,
+                    errorText: "Passwords do not match",
+                    textStyle: TextStyle(color: theme.colorScheme.onBackground),
+                    errorStyle: TextStyle(color: theme.colorScheme.error),
+                    showError: (snapshot.hasData &&
+                        snapshot.data ==
+                            SignUpViewState.PASSWORD_DOESNT_MATCH_ERROR),
+                    hintText: "Confirm Password",
+                    hintStyle: TextStyle(
+                      color: theme.colorScheme.onBackground.withAlpha(75),
+                    ),
+                    obsurceText: true,
                   ),
                 ),
                 (snapshot.hasData &&
