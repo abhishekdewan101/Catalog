@@ -18,10 +18,6 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-      - name: Analyze
-        run: flutter analyze
-      - name: Testing
-        run: flutter test --coverage
       - run: flutter pub get
       #     - run: flutter build apk --target-platform android-arm,android-arm64 --split-per-abi
       #     - run: flutter build appbundle --target-platform android-arm,android-arm64
