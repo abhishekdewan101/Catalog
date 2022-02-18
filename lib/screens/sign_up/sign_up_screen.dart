@@ -30,7 +30,7 @@ class SignUpScreen extends ConsumerWidget {
         builder: (context, snapshot) {
           log("Current State - ${snapshot.data}");
 
-          if (snapshot.data == SignUpViewState.SIGN_UP_SUCCESSFUL) {
+          if (snapshot.data == SignUpViewState.signUpSuccessful) {
             Future.microtask(() => context.goNamed(Routes.home));
           }
 
@@ -65,7 +65,7 @@ class SignUpScreen extends ConsumerWidget {
                     textStyle: TextStyle(color: theme.colorScheme.onBackground),
                     errorStyle: TextStyle(color: theme.colorScheme.error),
                     showError: (snapshot.hasData &&
-                        snapshot.data == SignUpViewState.EMAIL_ERROR),
+                        snapshot.data == SignUpViewState.emailError),
                     hintText: "Enter Email",
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onBackground.withAlpha(75),
@@ -82,7 +82,7 @@ class SignUpScreen extends ConsumerWidget {
                     textStyle: TextStyle(color: theme.colorScheme.onBackground),
                     errorStyle: TextStyle(color: theme.colorScheme.error),
                     showError: (snapshot.hasData &&
-                        snapshot.data == SignUpViewState.PASSWORD_ERROR),
+                        snapshot.data == SignUpViewState.passwordError),
                     hintText: "Enter Password",
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onBackground.withAlpha(75),
@@ -101,7 +101,7 @@ class SignUpScreen extends ConsumerWidget {
                     errorStyle: TextStyle(color: theme.colorScheme.error),
                     showError: (snapshot.hasData &&
                         snapshot.data ==
-                            SignUpViewState.PASSWORD_DOESNT_MATCH_ERROR),
+                            SignUpViewState.passwordDoesNotMatchError),
                     hintText: "Confirm Password",
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onBackground.withAlpha(75),
@@ -109,8 +109,7 @@ class SignUpScreen extends ConsumerWidget {
                     obsurceText: true,
                   ),
                 ),
-                (snapshot.hasData &&
-                        snapshot.data == SignUpViewState.SIGNING_UP)
+                (snapshot.hasData && snapshot.data == SignUpViewState.signingUp)
                     ? const Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: CircularProgressIndicator(),

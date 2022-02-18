@@ -3,12 +3,12 @@ import 'package:mind_palace/utils/extensions/string_extensions.dart';
 import 'package:rxdart/subjects.dart';
 
 enum SignUpViewState {
-  INITIAL,
-  SIGNING_UP,
-  EMAIL_ERROR,
-  PASSWORD_ERROR,
-  PASSWORD_DOESNT_MATCH_ERROR,
-  SIGN_UP_SUCCESSFUL,
+  initial,
+  signingUp,
+  emailError,
+  passwordError,
+  passwordDoesNotMatchError,
+  signUpSuccessful,
 }
 
 abstract class SignUpViewModel {
@@ -19,7 +19,7 @@ abstract class SignUpViewModel {
 
 class SignUpViewModelImpl implements SignUpViewModel {
   late AuthenticationRepository repository;
-  final _viewState = BehaviorSubject.seeded(SignUpViewState.INITIAL);
+  final _viewState = BehaviorSubject.seeded(SignUpViewState.initial);
 
   SignUpViewModelImpl(this.repository);
 
@@ -33,18 +33,17 @@ class SignUpViewModelImpl implements SignUpViewModel {
       String? email, String? password, String? passwordConfirmation) {
     if (!_isValidEmail(email)) return;
     if (!_isValidPassword(password, passwordConfirmation)) return;
-    _viewState.value = SignUpViewState.SIGNING_UP;
+    _viewState.value = SignUpViewState.signingUp;
     repository
         .tryCreateUserWithEmailAndPassword(email!, password!)
-        .then(
-            (value) => {_viewState.value = SignUpViewState.SIGN_UP_SUCCESSFUL})
+        .then((value) => {_viewState.value = SignUpViewState.signUpSuccessful})
         .catchError(
           (error, stackTrace) => {
             //TODO: Perhaps better handling of different errors to provide better error message.
             if (error.toString().contains('password'))
-              _viewState.value = SignUpViewState.PASSWORD_ERROR
+              _viewState.value = SignUpViewState.passwordError
             else
-              _viewState.value = SignUpViewState.EMAIL_ERROR
+              _viewState.value = SignUpViewState.emailError
           },
         );
   }
@@ -54,12 +53,12 @@ class SignUpViewModelImpl implements SignUpViewModel {
         password.isEmpty ||
         passwordConfirmation == null ||
         passwordConfirmation.isEmpty) {
-      _viewState.value = SignUpViewState.PASSWORD_ERROR;
+      _viewState.value = SignUpViewState.passwordError;
       return false;
     }
 
     if (password != passwordConfirmation) {
-      _viewState.value = SignUpViewState.PASSWORD_DOESNT_MATCH_ERROR;
+      _viewState.value = SignUpViewState.passwordDoesNotMatchError;
       return false;
     }
     return true;
@@ -67,7 +66,7 @@ class SignUpViewModelImpl implements SignUpViewModel {
 
   bool _isValidEmail(String? email) {
     if (email == null || email.isEmpty || !email.isValidEmail()) {
-      _viewState.value = SignUpViewState.EMAIL_ERROR;
+      _viewState.value = SignUpViewState.emailError;
       return false;
     }
     return true;

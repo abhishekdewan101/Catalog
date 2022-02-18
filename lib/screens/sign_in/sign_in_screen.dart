@@ -28,11 +28,11 @@ class SignInScreen extends ConsumerWidget {
         builder: (context, snapshot) {
           log("Current State - ${snapshot.data}");
 
-          if (snapshot.data == SignInViewState.SIGN_IN_SUCCESS) {
+          if (snapshot.data == SignInViewState.signInSuccess) {
             Future.microtask(() => context.goNamed(Routes.home));
           }
 
-          if (snapshot.data == SignInViewState.SIGN_IN_ERROR) {
+          if (snapshot.data == SignInViewState.signInError) {
             Future.microtask(
               () => {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -78,7 +78,7 @@ class SignInScreen extends ConsumerWidget {
                     textStyle: TextStyle(color: theme.colorScheme.onBackground),
                     errorStyle: TextStyle(color: theme.colorScheme.error),
                     showError: (snapshot.hasData &&
-                        snapshot.data == SignInViewState.SIGN_IN_ERROR),
+                        snapshot.data == SignInViewState.signInError),
                     hintText: "Enter Email",
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onBackground.withAlpha(75),
@@ -95,7 +95,7 @@ class SignInScreen extends ConsumerWidget {
                     textStyle: TextStyle(color: theme.colorScheme.onBackground),
                     errorStyle: TextStyle(color: theme.colorScheme.error),
                     showError: (snapshot.hasData &&
-                        snapshot.data == SignInViewState.SIGN_IN_ERROR),
+                        snapshot.data == SignInViewState.signInError),
                     hintText: "Enter Password",
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onBackground.withAlpha(75),
@@ -103,8 +103,7 @@ class SignInScreen extends ConsumerWidget {
                     obsurceText: true,
                   ),
                 ),
-                (snapshot.hasData &&
-                        snapshot.data == SignInViewState.SIGNING_IN)
+                (snapshot.hasData && snapshot.data == SignInViewState.signingIn)
                     ? const Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: CircularProgressIndicator(),

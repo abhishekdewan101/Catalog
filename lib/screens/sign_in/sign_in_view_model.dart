@@ -7,12 +7,12 @@ abstract class SignInViewModel {
   void tryCreateUserWithEmailAndPassword(String? email, String? password);
 }
 
-enum SignInViewState { INITIAL, SIGNING_IN, SIGN_IN_ERROR, SIGN_IN_SUCCESS }
+enum SignInViewState { initial, signingIn, signInError, signInSuccess }
 
 class SignInViewModelImpl implements SignInViewModel {
   late AuthenticationRepository repository;
   final _viewState =
-      BehaviorSubject<SignInViewState>.seeded(SignInViewState.INITIAL);
+      BehaviorSubject<SignInViewState>.seeded(SignInViewState.initial);
 
   SignInViewModelImpl(this.repository);
 
@@ -25,17 +25,17 @@ class SignInViewModelImpl implements SignInViewModel {
   void tryCreateUserWithEmailAndPassword(String? email, String? password) {
     if (!_isValidEmail(email)) return;
     if (!_isValidPassword(password)) return;
-    _viewState.value = SignInViewState.SIGNING_IN;
+    _viewState.value = SignInViewState.signingIn;
     repository
         .trySignInUserWithEmailAndPassword(email!, password!)
-        .then((value) => {_viewState.value = SignInViewState.SIGN_IN_SUCCESS})
+        .then((value) => {_viewState.value = SignInViewState.signInSuccess})
         .catchError((error, stackTrace) =>
-            {_viewState.value = SignInViewState.SIGN_IN_ERROR});
+            {_viewState.value = SignInViewState.signInError});
   }
 
   bool _isValidPassword(String? password) {
     if (password == null || password.isEmpty) {
-      _viewState.value = SignInViewState.SIGN_IN_ERROR;
+      _viewState.value = SignInViewState.signInError;
       return false;
     }
     return true;
@@ -43,7 +43,7 @@ class SignInViewModelImpl implements SignInViewModel {
 
   bool _isValidEmail(String? email) {
     if (email == null || email.isEmpty || !email.isValidEmail()) {
-      _viewState.value = SignInViewState.SIGN_IN_ERROR;
+      _viewState.value = SignInViewState.signInError;
       return false;
     }
     return true;
