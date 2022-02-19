@@ -7,6 +7,7 @@ abstract class AuthenticationRepository {
       String email, String password);
   Future<UserCredential?> trySignInUserWithEmailAndPassword(
       String email, String password);
+  Future<void> signOutUser();
 }
 
 class FirebaseAuthenticationRepository implements AuthenticationRepository {
@@ -29,5 +30,10 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
   Future<UserCredential?> trySignInUserWithEmailAndPassword(
       String email, String password) {
     return instance.trySignInUserWithEmailAndPassword(email, password);
+  }
+
+  @override
+  Future<void> signOutUser() {
+    return instance.signOutUser();
   }
 }
