@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mind_palace/providers/view_model_providers.dart';
 import 'package:mind_palace/screens/account/account_view_model.dart';
@@ -25,6 +26,28 @@ class AccountScreen extends ConsumerWidget {
             child: Scaffold(
               body: Column(
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SvgPicture.asset(
+                      'assets/google_logo.svg',
+                      width: 100.0,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      viewModel.getCurrentUser()?.displayName?.toString() !=
+                              null
+                          ? viewModel.getCurrentUser()!.displayName!.toString()
+                          : "John Doe",
+                      style: TextStyle(
+                        color: theme.colorScheme.onBackground,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20.0,
